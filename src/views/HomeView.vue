@@ -1,9 +1,9 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 
 const title = ref('Página Principal');
 
-const nomes = ref([
+const nomes = reactive([
   {contexto: 'Luiz Lins', concluido: false},
   {contexto: 'Laura Lívia', concluido: true},
   {contexto: 'Maria Silva', concluido: false},
@@ -14,20 +14,20 @@ const auxiliar = ref('');
 const valorIndice = ref('');
 
 const manipularNome = (auxiliar, numero) => {
-  nomes.value.push({contexto: auxiliar, concluido: false});
+  nomes.push({contexto: auxiliar, concluido: false});
   console.log(numero ? 'editar' : 'salvar')
 };
 
 const excluirNome = (numero) => {
-  nomes.value.splice(numero,1);
+  nomes.splice(numero,1);
 }
 
 const tacharNome = (numero) => {
-  nomes.value[numero].concluido = !nomes.value[numero].concluido
+  nomes[numero].concluido = !nomes[numero].concluido
 }
 
 const editarNome = (numero) => {
-  auxiliar.value = nomes.value[numero].contexto;
+  auxiliar.value = nomes[numero].contexto;
   valorIndice.value = numero
 }
 </script>
